@@ -1,0 +1,248 @@
+/* Styles for body */
+body {
+  background-color: #120e20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e4e4e4;
+  font-family: Arial, sans-serif;
+}
+
+/* Styles for output container */
+#output-container {
+  display: none;
+  margin-top: 20px;
+  background-color: #231c3a;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for language box */
+.language-box {
+  margin-bottom: 20px;
+  border: 1px solid #523c73;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #3f2c5f;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.language-box h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Styles for word list */
+.word-list {
+  list-style-type: none;
+  padding: 0;
+  background-color: #3f2c5f;
+}
+
+.word-list li {
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.word-list span {
+  font-weight: bold;
+  color: #e4e4e4;
+}
+
+.additional-text {
+  margin-left: 5px;
+  color: #aaa;
+}
+
+/* Styles for generate button */
+#generate-btn {
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 1em;
+  background-color: #7e57c2;
+  color: #e4e4e4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Typography */
+h1 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+#generate-btn:hover {
+  background-color: #a47bd4;
+}
+
+/* Styles for word boxes */
+.word-box {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.word-box label {
+  display: inline-block;
+  white-space: normal;
+  padding: 5px;
+  border: 1px solid #523c73;
+  border-radius: 5px;
+  background-color: #3f2c5f;
+  transition: background-color 0.3s ease;
+}
+
+/* Add hover styles for word boxes */
+.word-box:hover {
+  background-color: #7e57c2; /* Update background color on hover */
+  transform: translateY(-2px); /* Add a slight vertical shift */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a box shadow */
+}
+
+/* Styles for centering the sections */
+.center-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Styles for word box container */
+.word-box-container {
+  text-align: center;
+}
+
+/* Add styles for button-container */
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+  clear: both;
+}
+
+#toggle-iframe-btn {
+  background-color: #3f2c5f; /* Update the background color to match your website */
+  color: #e4e4e4; /* Update the text color to match your website */
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* Update the font size to match your website */
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+#toggle-iframe-btn:hover {
+  background-color: #7e57c2; /* Update the background color on hover to match your website */
+}
+
+.copy-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #007BFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.copy-button:hover {
+  background-color: #0056b3;
+}
+
+/* Additional visual enhancements */
+
+/* Update language box styles */
+.language-box {
+  margin-bottom: 10px;
+  border: 2px solid #523c73;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #3f2c5f;
+}
+
+.language-box h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #e4e4e4;
+}
+
+.language-box h3 {
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #ffb347;
+}
+
+/* Update generate button styles */
+#generate-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 1.2em;
+  background-color: #7e57c2;
+  color: #e4e4e4;
+  border-radius: 8px;
+}
+
+#generate-btn:hover {
+  background-color: #a47bd4;
+  transform: scale(1.05);
+}
+
+/* Update word boxes styles */
+.word-box {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  background-color: #523c73;
+  padding: 8px;
+  border-radius: 3px;
+}
+
+.word-box label {
+  display: inline-block;
+  white-space: normal;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+/* Update center section styles */
+.center-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Update copy button styles */
+.copy-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #523c73;
+  color: #e4e4e4;
+  border-radius: 8px;
+}
+
+.copy-button:hover {
+  background-color: #3f2c5f;
+  transform: scale(1.05);
+}
+
