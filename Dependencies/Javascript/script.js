@@ -1,23 +1,6 @@
 const clickSound = new Audio('Files/SFX/click-sound.mp3'); // Create an audio element for the click sound
 const copySound = new Audio('Files/SFX/copy-sound.mp3'); // Create an audio element for the copy sound
 
-const createListItem = (value, index, addHtmlTags, totalWords) => {
-  const listItem = document.createElement("li");
-  if (index === 0 && addHtmlTags) {
-    const escapedValue = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    listItem.textContent = "<p><strong>" + escapedValue + "</strong></p>";
-  } else if (index === 1) {
-    listItem.textContent = "<ul>";
-  } else if (index > 1 && index < totalWords) {
-    listItem.textContent = `<li>&bull; ${value}</li>`;
-  } else if (index === totalWords) {
-    listItem.textContent = "</ul>";
-  } else {
-    listItem.textContent = value;
-  }
-  return listItem;
-};
-
 function generateLanguage() {
   const outputContainer = document.getElementById("output-container");
   outputContainer.innerHTML = "";
@@ -35,6 +18,16 @@ function generateLanguage() {
 
   outputContainer.style.display = "block"; // Show the output container if languages and words are selected
 
+const createListItem = (value, index) => {
+  const listItem = document.createElement("li");
+  if (index > 0) {
+    listItem.textContent = `<li>&bull; ${value}</li>`;
+  } else {
+    listItem.textContent = value;
+  }
+  return listItem;
+};
+
   selectedLanguages.forEach(language => {
     const languageBox = document.createElement("div");
     languageBox.classList.add("language-box");
@@ -46,11 +39,11 @@ function generateLanguage() {
     const wordList = document.createElement("ul");
     wordList.classList.add("word-list");
 
-    selectedWords.forEach((word, index) => {
-      const wordValue = word_library[language][word];
-      const listItem = createListItem(wordValue, index, index === 0, selectedWords.length - 1);
-      wordList.appendChild(listItem);
-    });
+selectedWords.forEach((word, index) => {
+  const wordValue = word_library[language][word];
+  const listItem = createListItem(wordValue, index);
+  wordList.appendChild(listItem);
+});
 
     const copyButton = document.createElement("button");
     copyButton.textContent = "Copy!";
@@ -59,8 +52,8 @@ function generateLanguage() {
       const textToCopy = Array.from(wordList.querySelectorAll("li")).map(li => li.textContent).join("\n");
       navigator.clipboard.writeText(textToCopy)
         .then(() => {
-          copySound.play(); // Play the copy sound effect
-
+          copySound.play(); // Play the copy sound effect      
+        
           copyButton.textContent = "Copied!";
           setTimeout(() => {
             copyButton.textContent = "Copy!";
@@ -81,14 +74,14 @@ function generateLanguage() {
   clickSound.play(); // Play the click sound effect
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const generateBtn = document.getElementById("generate-btn");
   generateBtn.addEventListener("click", generateLanguage);
-
+  
   const toggleIframeBtn = document.getElementById("toggle-iframe-btn");
   const cosmicIframe = document.getElementById("cosmic-iframe");
 
-  toggleIframeBtn.addEventListener("click", function () {
+  toggleIframeBtn.addEventListener("click", function() {
     cosmicIframe.style.display = cosmicIframe.style.display === "none" ? "block" : "none";
   });
 });
