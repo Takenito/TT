@@ -18,15 +18,15 @@ function generateLanguage() {
 
   outputContainer.style.display = "block"; // Show the output container if languages and words are selected
 
-const createListItem = (value, index) => {
-  const listItem = document.createElement("li");
-  if (index > 0) {
-    listItem.textContent = `<li>&bull; ${value}</li>`;
-  } else {
-    listItem.textContent = value;
-  }
-  return listItem;
-};
+  const createListItem = (value, index) => {
+    const listItem = document.createElement("li");
+    if (index > 0) {
+      listItem.textContent = `<li>&bull; ${value}</li>`;
+    } else {
+      listItem.textContent = value;
+    }
+    return listItem;
+  };
 
   selectedLanguages.forEach(language => {
     const languageBox = document.createElement("div");
@@ -39,11 +39,21 @@ const createListItem = (value, index) => {
     const wordList = document.createElement("ul");
     wordList.classList.add("word-list");
 
-selectedWords.forEach((word, index) => {
-  const wordValue = word_library[language][word];
-  const listItem = createListItem(wordValue, index);
-  wordList.appendChild(listItem);
-});
+    selectedWords.forEach((word, index) => {
+      const wordValue = word_library[language][word];
+      const listItem = createListItem(wordValue, index);
+
+      if (index === 0) {
+        const ulListItem = createListItem("<ul>");
+        wordList.appendChild(listItem);
+        wordList.appendChild(ulListItem);
+      } else {
+        wordList.appendChild(listItem);
+      }
+    });
+
+    const closingListItem = createListItem("</ul>");
+    wordList.appendChild(closingListItem);
 
     const copyButton = document.createElement("button");
     copyButton.textContent = "Copy!";
@@ -52,8 +62,8 @@ selectedWords.forEach((word, index) => {
       const textToCopy = Array.from(wordList.querySelectorAll("li")).map(li => li.textContent).join("\n");
       navigator.clipboard.writeText(textToCopy)
         .then(() => {
-          copySound.play(); // Play the copy sound effect      
-        
+          copySound.play(); // Play the copy sound effect
+
           copyButton.textContent = "Copied!";
           setTimeout(() => {
             copyButton.textContent = "Copy!";
@@ -77,7 +87,7 @@ selectedWords.forEach((word, index) => {
 document.addEventListener("DOMContentLoaded", function() {
   const generateBtn = document.getElementById("generate-btn");
   generateBtn.addEventListener("click", generateLanguage);
-  
+
   const toggleIframeBtn = document.getElementById("toggle-iframe-btn");
   const cosmicIframe = document.getElementById("cosmic-iframe");
 
