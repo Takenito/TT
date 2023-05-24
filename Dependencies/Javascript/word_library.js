@@ -1,6 +1,6 @@
 const word_library = {
   English: {
-    "DLC includes:": "<p>DLC includes:</p>",
+    "DLC includes:": "DLC includes:",
     "Includes:": "Includes:",
     "Base game": "Base game",
     "Digital soundtrack": "Digital soundtrack",
