@@ -3,98 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <title>Cosmic HTML Editor</title>
- <style>
-    body {
-        background-color: #120e20;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 16px;
-        color: #e4e4e4;
-    }
+    <audio id="clickSound" src="click_sound.wav"></audio>
+    <style>
+        body {
+            background-color: #120e20;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            color: #e4e4e4;
+        }
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-    .text-area {
-        display: block;
-        width: 60%;
-        height: 35vh;
-        padding: 10px;
-        border: 1px solid #523c73;
-        border-radius: 5px;
-        resize: none;
-        overflow: auto;
-        margin-bottom: 20px;
-        background-color: #352f4e;
-        color: #e4e4e4;
-    }
+        .input-output-container {
+            display: flex;
+            width: 80%;
+            margin-bottom: 20px;
+            margin-right: 10px; /* Add margin between input and output */
+        }
 
-    .output {
-        width: 60%;
-        height: 35vh;
-        border: 1px solid #523c73;
-        border-radius: 5px;
-        background-color: #231c3a;
-        padding: 10px;
-        color: #e4e4e4;
-    }
+        .text-area {
+            flex: 1;
+            height: 75vh;
+            padding: 10px;
+            border: 1px solid #523c73;
+            border-radius: 5px;
+            resize: none;
+            overflow: auto;
+            background-color: #352f4e;
+            color: #e4e4e4;
+            margin-right: 10px; /* Add margin between input and output */
+        }
 
-    .buttons {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: center;
-        margin-top: 20px;
-    }
+        .output {
+            flex: 1;
+            height: 75vh;
+            border: 1px solid #523c73;
+            border-radius: 5px;
+            background-color: #231c3a;
+            padding: 10px;
+            color: #e4e4e4;
+        }
 
-    button {
-        background-color: #3f2c5f;
-        color: #e4e4e4;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        margin: 5px;
-        transition: background-color 0.3s ease;
-    }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
 
-    button:hover {
-        background-color: #523c73;
-        
-    }
-    
-    /* Hide the scroll bar within the iframe */
-    body {
-        overflow: hidden;
-</style>
+        button {
+            background-color: #3f2c5f;
+            color: #e4e4e4;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
 
+        button:hover {
+            background-color: #523c73;
+        }
+
+        /* Hide the scroll bar within the iframe */
+        body {
+            overflow: hidden;
+        }
+    </style>
 
     <script>
-function updateOutput() {
-    var input = document.getElementById("inputArea").value;
-    var output = document.getElementById("outputArea");
-    
-        // Create a regular expression to match the word "kaina"
-    var regex = new RegExp("\\b(kaina|kaufen|al mejor precio|prezzo)\\b", "gi");
+        function updateOutput() {
+            var input = document.getElementById("inputArea").value;
+            var output = document.getElementById("outputArea");
 
-    // Replace the matched word with a span element containing the word and the desired CSS style
-    var highlightedOutput = input.replace(regex, '<span style="background-color: #FF69B4;">$&</span>');
+            // Create a regular expression to match the word "kaina"
+            var regex = new RegExp("\\b(kaina|kaufen|al mejor precio|prezzo)\\b", "gi");
 
-    output.contentDocument.open();
-    output.contentDocument.write('<html><head><style>body { background-color: #231c3a; font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif; font-size: 15px; color: #ffffff; }</style></head><body>' + highlightedOutput + '</body></html>');
-    output.contentDocument.close();
-}
+            // Replace the matched word with a span element containing the word and the desired CSS style
+            var highlightedOutput = input.replace(regex, '<span style="background-color: #FF69B4;">$&</span>');
+
+            output.contentDocument.open();
+            output.contentDocument.write('<html><head><style>body { background-color: #231c3a; font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif; font-size: 15px; color: #ffffff; }</style></head><body>' + highlightedOutput + '</body></html>');
+            output.contentDocument.close();
+        }
 
         function removeH2() {
             var input = document.getElementById("inputArea").value;
             input = input.replace(/<h2>(.*?)<\/h2>/i, "");
             document.getElementById("inputArea").value = input;
             updateOutput();
+            var clickSound = document.getElementById("clickSound");
+            clickSound.play();
         }
 
         function removeFirstKaina() {
@@ -104,6 +110,9 @@ function updateOutput() {
             input = input.replace(regex, "");
             document.getElementById("inputArea").value = input;
             updateOutput();
+            var clickSound = document.getElementById("clickSound");
+            clickSound.play();
+
         }
 
         function removeFirstPrezzo() {
@@ -111,6 +120,9 @@ function updateOutput() {
             input = input.replace("prezzo", "");
             document.getElementById("inputArea").value = input;
             updateOutput();
+            var clickSound = document.getElementById("clickSound");
+            clickSound.play();
+
         }
 
         function removeFirstAlMejorPrecio() {
@@ -118,6 +130,9 @@ function updateOutput() {
             input = input.replace("al mejor precio", "");
             document.getElementById("inputArea").value = input;
             updateOutput();
+            var clickSound = document.getElementById("clickSound");
+            clickSound.play();
+
         }
 
         function removeFirstKaufen() {
@@ -125,13 +140,18 @@ function updateOutput() {
             input = input.replace("kaufen", "");
             document.getElementById("inputArea").value = input;
             updateOutput();
+            var clickSound = document.getElementById("clickSound");
+            clickSound.play();
+
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <textarea id="inputArea" class="text-area" placeholder="Enter HTML code here" oninput="updateOutput()"></textarea>
-        <iframe id="outputArea" class="output"></iframe>
+        <div class="input-output-container">
+            <textarea id="inputArea" class="text-area" placeholder="Enter HTML code here" oninput="updateOutput()"></textarea>
+            <iframe id="outputArea" class="output"></iframe>
+        </div>
         <div class="buttons">
             <button onclick="removeH2()">Remove First Header</button>
             <button onclick="removeFirstKaina()">Remove First "kaina"</button>
