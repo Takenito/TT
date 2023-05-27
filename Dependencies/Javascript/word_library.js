@@ -186,5 +186,25 @@ const word_library = {
     "vehicle skin": "Εμφάνιση οχήματος",
     "online access": "online πρόσβαση",
     "upgrade": "Αναβάθμιση"
-    },
+  },
+  Italian: {
+    "DLC includes:": "Il DLC include:",
+    "Includes:": "Includere:",
+    "Base game": "Il gioco base;",
+    "Digital soundtrack": "Colonna sonora digitale;",
+    "Digital artbook": "Artbook digitale;",
+    "[character name] outfit": "[character name] outfit;",
+    "[character name] skin": "Skin [character name];",
+    "weapon skin": "Skin arma;",
+    "3-day Early Access": "Accesso anticipato di 3 giorni;",
+    "expansion": "espansione;",
+    "Season Pass": "Pass stagionale;",
+    "[title] pack": "Pacchetto [title],",
+    "weapon": "arma",
+    "cosmetic items": "Articoli cosmetici;",
+    "vehicle skin": "Skin per veicolo;",
+    "online access": "accesso online;",
+    "upgrade": "Aggiornamenti;"
+  },  
+
 };
