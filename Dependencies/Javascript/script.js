@@ -1,5 +1,8 @@
 const clickSound = new Audio('Files/SFX/click-sound.mp3'); // Create an audio element for the click sound
 const copySound = new Audio('Files/SFX/copy-sound.mp3'); // Create an audio element for the copy sound
+const FrameSound = new Audio('Files/SFX/frame_sound.mp3'); // Create an audio element for Toggle button
+let canClick = true;
+
 
 function generateLanguage() {
   const outputContainer = document.getElementById("output-container");
@@ -18,18 +21,18 @@ function generateLanguage() {
 
   outputContainer.style.display = "block"; // Show the output container if languages and words are selected
 
-  const createListItem = (value, index) => {
-    const listItem = document.createElement("li");
-    if (index > -1) {
-      if (index > 0) {
-        listItem.textContent = `<li>&bull; ${value}</li>`;
-      } else {
-        listItem.textContent = `<p><strong>${value}</strong></p>`;
-      }
+const createListItem = (value, index) => {
+  const listItem = document.createElement("li");
+  if (index > -1) {
+    if (index > 0) {
+      listItem.textContent = `<li>&bull; ${value}</li>`;
     } else {
-      listItem.textContent = value;
+      listItem.textContent = `<p><strong>${value}</strong></p>`;
     }
-    return listItem;
+  } else {
+    listItem.textContent = value;
+  }
+  return listItem;
 };
 
   selectedLanguages.forEach(language => {
@@ -95,7 +98,18 @@ document.addEventListener("DOMContentLoaded", function() {
   const toggleIframeBtn = document.getElementById("toggle-iframe-btn");
   const cosmicIframe = document.getElementById("cosmic-iframe");
 
-  toggleIframeBtn.addEventListener("click", function() {
-    cosmicIframe.style.display = cosmicIframe.style.display === "none" ? "block" : "none";
+  const clickSound = new Audio('Files/SFX/click-sound.mp3');
+  let canClick = true;
+
+  toggleIframeBtn.addEventListener('click', function() {
+    if (canClick) {
+      cosmicIframe.style.display = cosmicIframe.style.display === 'none' ? 'block' : 'none';
+      FrameSound.play();
+      
+      canClick = false;
+      setTimeout(function() {
+        canClick = true;
+      }, 500); // Delay between clicks in milliseconds (adjust as needed)
+    }
   });
 });
