@@ -20,13 +20,17 @@ function generateLanguage() {
 
   const createListItem = (value, index) => {
     const listItem = document.createElement("li");
-    if (index > 0) {
-      listItem.textContent = `<li>&bull; ${value}</li>`;
+    if (index > -1) {
+      if (index > 0) {
+        listItem.textContent = `<li>&bull; ${value}</li>`;
+      } else {
+        listItem.textContent = `<p><strong>${value}</strong></p>`;
+      }
     } else {
       listItem.textContent = value;
     }
     return listItem;
-  };
+};
 
   selectedLanguages.forEach(language => {
     const languageBox = document.createElement("div");
